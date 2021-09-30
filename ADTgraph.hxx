@@ -118,6 +118,8 @@ class graph
         }
         edge[row][col].is = true;
         edge[row][col].v_ = v;
+        edge[col][row].is = true;
+        edge[col][row].v_ = v;
         }
         
     }
@@ -200,6 +202,62 @@ class graph
         }
         file<<"}\n";
         file.close();
+    }
+
+        inline void dijkstra(T1 x) {
+        int inf = 214748364;
+        typeV temp1(x);
+        size_t start{0}, count{0}, min_distance{0}, nextnode{0};
+        if(getID(temp1)!=-1)      
+            start = getID(temp1);
+
+        std::vector<std::vector<size_t>>cost(vertex.size(),std::vector<size_t>(vertex.size(),inf));
+        std::vector<size_t> distance(vertex.size(), 0), pred(vertex.size(), 0), visited(vertex.size(), 0);
+
+        for(size_t i=0; i<vertex.size(); i++)
+            for(size_t j=0; j<vertex.size(); j++)
+                if(edge[i][j].is == true)
+                    cost[i][j] = edge[i][j].v_;
+
+
+
+        for(size_t i = 0; i<vertex.size(); i++) {
+            distance[i] = cost[start][i];
+            pred[i] = start;
+
+        }
+        distance[start] = 0;
+        visited[start] = 1;
+        count = 1;
+
+        while(count < vertex.size()-1) {
+            min_distance = inf;
+            for(size_t i=0; i<vertex.size(); i++)
+                if(distance[i] < min_distance && !visited[i]) {
+                    min_distance = distance[i];
+                    nextnode = i;
+                }
+            visited[nextnode] = 1;
+            for(size_t i=0; i<vertex.size(); i++)
+                if(!visited[i])
+                    if(min_distance + cost[nextnode][i] < distance[i]) {
+                        distance[i] = min_distance + cost[nextnode][i];
+                        pred[i] = nextnode;
+                    }
+            count++;
+        }
+    for(size_t i = 0;i<vertex.size();i++)
+        if(i != start) {
+                std::cout<<"from " << vertex[start].key << " to "<< vertex[i].key <<" = "<< distance[i] << '\n';
+                std::cout <<'\t'<< vertex[i].key;
+                size_t j = i;
+                do {
+                    j = pred[j];
+                    std::cout<<"<-"<< vertex[j].key;
+                }while(j!=start);
+                std::cout<<'\n';
+            }
+        
     }
 };
 

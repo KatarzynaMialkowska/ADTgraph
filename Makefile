@@ -66,4 +66,4 @@ tester: test
 
 .PHONY: clean
 clean:                                                     
-	rm -f *.o  *~ *.a *.so *.x *.txt *.gv *.jpg *.dat core core* a.out; rm -rf ${LIB_DIR}
+	rm -f *.o  *~ *.a *.so *.pdf *.x *.txt *.gv *.jpg *.dat core core* a.out; rm -rf ${LIB_DIR}

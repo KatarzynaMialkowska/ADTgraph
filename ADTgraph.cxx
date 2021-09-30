@@ -15,6 +15,15 @@ int main(){
     A.setEdgeValue("Poznan","Warszawa",6); 
     A.view();
     A.writeDot();
+
+    
+    A.dijkstra("Warszawa");
+    std::cout<<"=======\n";
+    A.dijkstra("Poznan");
+
+     std::cout<<"=======\n";
+    A.dijkstra("Krakow");
+
     //A.getEdgeValue("Warszawa","Krakow"); 
 
     // B.addVertex(1);
