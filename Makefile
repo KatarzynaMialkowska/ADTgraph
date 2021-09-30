@@ -55,7 +55,7 @@ ADTgraphList: B
 
 
 .PHONY: graph
-graph:
+graph: ADTgraph
 	@dot -Tjpg graph.gv -o graphGV.jpg
 
 test: $(EXEC2) $(EXEC3)
